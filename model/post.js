@@ -10,29 +10,31 @@ var commentSchema = new Schema({
   timestamps: true
 })
 
+var solutionSchema = new Schema({
+  warrior: {type: String, required: true},
+  image: {type: String, required: true},
+  saviours: {type: Array}
+})
+
 
 
 
 var postSchema = new Schema({
   date: { type: Date, default: Date.now },
-  heading : String,
-  like_count :{type:Number,default:0},
-  stake_holders:String,
-  likes:[String],
-  author_name:String,
+  title : String,
+  votes :{type:Number,default:0},
+  location:String,
+  author:String,
   description : String,
-  author : String,
   location : String,
-  type_post:{ type: String, default: "Solution" },
-  author_image:String,
-  image_before: String,
-  image_after: String,
+  city: String,
+  image: String,
+  rsvp: Array,
+  tentativeDate: {type: Date}
   //this stores name of challenger of this solution
-  challenge_user_name:String,
   //this stores post id of solutions to this challenge
-  solutions : { type: String, default: "" },
+  solutions : [solutionSchema],
     //this stores name of solver of this challenge
-  solutions_user_name:String,
   comments: [commentSchema]
 },{collection:'post'})
 
