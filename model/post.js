@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var ObjectId = mongoose.Types.ObjectId;
 
 
 var commentSchema = new Schema({
@@ -14,19 +13,17 @@ var solutionSchema = new Schema({
   warrior: {type: String, required: true},
   image: {type: String, required: true},
   saviours: {type: Array}
+}, {
+  timestamps: true
 })
-
-
-
 
 var postSchema = new Schema({
   date: { type: Date, default: Date.now },
-  title : String,
-  votes :{type:Number,default:0},
-  location:String,
-  author:String,
+  title: String,
+  votes: {type: Number, default: 0},
+  location: String,
+  author: String,
   description : String,
-  location : String,
   city: String,
   image: String,
   rsvp: Array,

@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+
 var bcrypt = require('bcrypt')
 const saltRounds = 10;
+
 // create a schema
 var userSchema = new Schema({
   name: String,
@@ -14,10 +16,10 @@ var userSchema = new Schema({
 
 userSchema.pre('save', function(next) {
   console.log("Something");
-  var user =this;
+  var user = this;
   bcrypt.hash(user.password, 10, function(err, hash) {
     if(err) return next(err);
-    user.password=hash;
+    user.password = hash;
     console.log(user);
     console.log("user saved");
     next();
