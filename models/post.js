@@ -27,11 +27,8 @@ var postSchema = new Schema({
   city: String,
   image: String,
   rsvp: Array,
-  tentativeDate: {type: Date}
-  //this stores name of challenger of this solution
-  //this stores post id of solutions to this challenge
+  tentativeDate: {type: Date},
   solutions : [solutionSchema],
-    //this stores name of solver of this challenge
   comments: [commentSchema]
 },{collection:'post'})
 

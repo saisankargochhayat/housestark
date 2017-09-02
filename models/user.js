@@ -7,7 +7,7 @@ const saltRounds = 10;
 // create a schema
 var userSchema = new Schema({
   name: String,
-  email: String,
+  email: {type: String, unique: true, required: true},
   city: String,
   password: String,
   bio: String,

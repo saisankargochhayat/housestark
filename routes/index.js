@@ -12,6 +12,15 @@ router.get('/', function(req, res, next) {
   }
 });
 
+router.get('/profile', function(req, res, next) {
+  if(req.session.user){
+    res.render('profile')
+  }
+  else {
+    res.render('index')
+  }
+});
+
 router.get('/login',function(req,res){
   if(req.session.user){
     res.render('dashboard')
