@@ -1,4 +1,5 @@
 var express = require('express');
+var bcrypt = require('bcrypt');
 var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('../models/user');
@@ -20,6 +21,7 @@ router.post('/signup', function(req, res, next) {
         res.send(err);
       } else {
         req.session.user = user.email;
+        req.session.name = user.name;
         req.session.points = user.points;
         res.redirect('/');
       }
@@ -28,6 +30,37 @@ router.post('/signup', function(req, res, next) {
   else{
     console.log('No data received');
   }
+});
+
+/* User login. */
+router.post('/login', function(req, res, next) {
+  User.findOne({ email: req.body.email }, function(err, user) {
+    if (err) {
+      res.status = 500;
+      res.send(err);
+    } else {
+      if (user) {
+        bcrypt.compare(req.body.password, user.password, function(err, result) {
+          if (err) {
+            res.status = 500;
+            res.send(err);
+          } else {
+            if (result) {
+              req.session.user = user.email;
+              req.session.name = user.name;
+              req.session.points = user.points;
+              res.redirect('/');
+            } else {
+              res.send("Password doesn't match");
+            }
+          }
+        });
+      } else {
+        res.status = 200;
+        res.send("Email doesn't exist");
+      }
+    }
+  });
 });
 
 module.exports = router;

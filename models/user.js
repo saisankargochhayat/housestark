@@ -15,13 +15,10 @@ var userSchema = new Schema({
 },{ collection: 'user'});
 
 userSchema.pre('save', function(next) {
-  console.log("Something");
   var user = this;
   bcrypt.hash(user.password, 10, function(err, hash) {
     if(err) return next(err);
     user.password = hash;
-    console.log(user);
-    console.log("user saved");
     next();
   });
 });

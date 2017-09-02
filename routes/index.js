@@ -5,24 +5,34 @@ var path = require('path');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.session.user){
-    res.render('issues');
+    res.render('dashboard')
   }
   else {
-    res.sendFile(path.resolve(__dirname + '/../public/index.html'));
+    res.render('index')
   }
 });
 
 router.get('/login',function(req,res){
-  res.sendFile(path.resolve(__dirname + '/../public/login.html'));
+  if(req.session.user){
+    res.render('dashboard')
+  }
+  else {
+    res.render('login')
+  }
 })
 
 router.get('/logout',function(req,res){
 	req.session.destroy();
-  res.sendFile(path.resolve(__dirname + '/../public/logout.html'));
+  res.render('logout')
 })
 
 router.get('/signup',function(req,res){
-  res.sendFile(path.resolve(__dirname + '/../public/signup.html'));
+  if(req.session.user){
+    res.render('dashboard')
+  }
+  else {
+    res.render('signup')
+  }
 })
 
 module.exports = router;
