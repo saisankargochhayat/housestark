@@ -63,7 +63,10 @@
 
               <input class="field" type="password" name="password" id="password" placeholder="Password" style="margin-bottom:38px;" required/>
 
-              <label>Image</label><input type="file" name="avatar" required>
+              <label>Image</label><input class="button" type="file" name="avatar" required>
+
+              <!-- <label class="control-label">Select File</label>
+              <input id="input-4" name="input4[]" type="file" multiple class="file-loading"> -->
 
               <input style="margin-top:15px;" class="field" type="submit" value="SIGN UP" class="button" id="signbutton">
               <p style="margin-bottom:15px;" class="signmsg"  ></p>
@@ -83,5 +86,10 @@
         }
       </script> -->
     <script type="text/javascript" src="/javascript/jquery.js"></script>
+    <script>
+      $(document).on('ready', function() {
+          $("#input-4").fileinput({showCaption: false});
+      });
+    </script>
   </body>
 </html>
