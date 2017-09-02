@@ -12,11 +12,12 @@ router.post('/newpost', upload.any(), function(req, res, next) {
     console.log(req.body);
     var tmp = req.files[0].path.split('/')
     tmp.shift()
-    var tmp_path = tmp.join('/')
+    var tmp_path = tmp.join('/');
+    console.log(req.session.user);
     var newPost = new Post({
       title: req.body.title,
       description: req.body.description,
-      author: req.session.name,
+      author: mongoose.Types.ObjectId(req.session.userid),
       location: req.body.location,
       image_path: tmp_path
     });
@@ -36,7 +37,7 @@ router.post('/newpost', upload.any(), function(req, res, next) {
 
 router.get('/:postid', function(req, res, next) {
   var post_id = req.params.postid;
-  Post.findById(post_id, function(err, post){
+  Post.findById(post_id).populate('author').exec( function(err, post){
     if(err){
       res.send(err);
     }

@@ -29,6 +29,7 @@ router.post('/signup', upload.any(), function(req, res, next) {
         req.session.user = user.email;
         req.session.name = user.name;
         req.session.points = user.points;
+        req.session.userid = user._id;
         res.redirect('/');
       }
     });
@@ -55,6 +56,7 @@ router.post('/login', function(req, res, next) {
               req.session.user = user.email;
               req.session.name = user.name;
               req.session.points = user.points;
+              req.session.userid = user._id;
               res.redirect('/');
             } else {
               res.send("Password doesn't match");

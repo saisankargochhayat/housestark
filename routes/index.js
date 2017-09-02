@@ -25,13 +25,13 @@ router.get('/profile', function(req, res, next) {
     res.render('profile')
   }
   else {
-    res.render('index')
+    res.redirect('/')
   }
 });
 
 router.get('/login',function(req,res){
   if(req.session.user){
-    res.render('dashboard')
+    res.redirect('/')
   }
   else {
     res.render('login')
@@ -45,7 +45,7 @@ router.get('/logout',function(req,res){
 
 router.get('/signup',function(req,res){
   if(req.session.user){
-    res.render('dashboard')
+    res.redirect('/')
   }
   else {
     res.render('signup')
@@ -57,7 +57,7 @@ router.get('/newpost',function(req,res){
     res.render('addpost')
   }
   else {
-    res.render('index')
+    res.redirect('/')
   }
 })
 

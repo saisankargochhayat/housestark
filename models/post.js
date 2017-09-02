@@ -22,7 +22,10 @@ var postSchema = new Schema({
   title: String,
   votes: {type: Number, default: 0},
   location: String,
-  author: String,
+  author: {
+    type : Schema.Types.ObjectId,
+    ref : 'User'
+  },
   description : String,
   city: String,
   image_path: String,
