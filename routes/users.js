@@ -71,4 +71,16 @@ router.post('/login', function(req, res, next) {
   });
 });
 
+router.get('/:userid', function(req, res, next) {
+  var user_id = req.params.userid;
+  User.findById(user_id, function(err, user){
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.render('profile', {user: user});
+    }
+  });
+});
+
 module.exports = router;
