@@ -4,21 +4,20 @@ var path = require('path');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log('got get req');
-  res.sendFile(path.resolve(__dirname + '/../public/tindex.html'));
+  res.sendFile(path.resolve(__dirname + '/../public/index.html'));
 });
 
 router.get('/login',function(req,res){
-	res.sendFile(path.join(__dirname,'../login.html'));
+  res.sendFile(path.resolve(__dirname + '/../public/login.html'));
 })
 
 router.get('/logout',function(req,res){
 	req.session.destroy();
-	res.sendFile(path.join(__dirname,'../logout.html'));
+  res.sendFile(path.resolve(__dirname + '/../public/logout.html'));
 })
 
 router.get('/signup',function(req,res){
-	res.sendFile(path.join(__dirname,'../signup.html'));
+  res.sendFile(path.resolve(__dirname + '/../public/signup.html'));
 })
 
 module.exports = router;
