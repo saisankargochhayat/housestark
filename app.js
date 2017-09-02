@@ -17,9 +17,7 @@ var users = require('./routes/users');
 var app = express();
 
 app.use(session({
-  secret: 'cnc2.0',
-  resave: false,
-  saveUninitialized: true
+  secret: 'cnc2.0'
 }))
 
 // view engine setup
