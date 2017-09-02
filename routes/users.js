@@ -10,13 +10,16 @@ var upload = multer({ dest: 'public/uploads/' })
 router.post('/signup', upload.any(), function(req, res, next) {
   if(req.body){
     console.log(req.body);
+    var tmp = req.files[0].path.split('/')
+    tmp.shift()
+    var tmp_path = tmp.join('/')
     var newUser = new User({
       name: req.body.name,
       email: req.body.email,
       city: req.body.city,
       password: req.body.password,
       bio: req.body.bio,
-      image_path: req.files[0].path
+      image_path: tmp_path
     });
     newUser.save(function(err, user) {
       if (err) {

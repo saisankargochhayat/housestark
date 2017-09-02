@@ -3,16 +3,22 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('../models/user');
 var Post = require('../models/post');
+var multer  = require('multer')
+var upload = multer({ dest: 'public/uploads/' })
 
 /* Add new post */
-router.post('/newpost', function(req, res, next) {
+router.post('/newpost', upload.any(), function(req, res, next) {
   if(req.body){
     console.log(req.body);
+    var tmp = req.files[0].path.split('/')
+    tmp.shift()
+    var tmp_path = tmp.join('/')
     var newPost = new Post({
       title: req.body.title,
       description: req.body.description,
       author: req.session.name,
-      location: req.body.location
+      location: req.body.location,
+      image_path: tmp_path
     });
     newPost.save(function(err, post) {
       if (err) {

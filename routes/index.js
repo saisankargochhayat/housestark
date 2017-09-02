@@ -1,11 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+var Post = require('../models/post');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.session.user){
-    res.render('dashboard')
+    Post.find({}, function(err,posts){
+      if(err){
+        res.send(err);
+      }
+      else{
+        res.render('dashboard', {posts: posts})
+      }
+    });
   }
   else {
     res.render('index')
