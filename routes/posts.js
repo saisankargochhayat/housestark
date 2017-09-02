@@ -19,7 +19,8 @@ router.post('/newpost', upload.any(), function(req, res, next) {
       description: req.body.description,
       author: mongoose.Types.ObjectId(req.session.userid),
       location: req.body.location,
-      image_path: tmp_path
+      image_path: tmp_path,
+      tentativeDate: req.body.date
     });
     newPost.save(function(err, post) {
       if (err) {
@@ -42,7 +43,6 @@ router.get('/:postid', function(req, res, next) {
       res.send(err);
     }
     else{
-      console.log(post);
       res.render('post', {post: post});
     }
   });
@@ -55,16 +55,14 @@ router.post('/rsvp', function(req, res, next) {
       res.send(err);
     }
     else{
-      Post.findById(post_id).populate('author').populate('rsvp').exec( function(err, post){
-        if(err){
-          res.send(err);
-        }
-        else{
-          res.render('post', {post: post});
-        }
-      });
+      res.redirect('/posts/'+post_id)
     }
   });
+});
+
+router.get('/:postid/solution', function(req, res, next) {
+  var post_id = req.params.postid;
+  res.render('submitsolution')
 });
 
 module.exports = router;

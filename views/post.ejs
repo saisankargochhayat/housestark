@@ -29,10 +29,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Dashboard
-                <span class="sr-only">(current)</span>
-              </a>
+            <li class="nav-item">
+              <a class="nav-link" href="/">Dashboard</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../logout">Logout</a>
@@ -131,8 +129,21 @@
           <div class="card my-4">
             <h5 class="card-header">Contribute to the cause!</h5>
             <div class="card-body">
+              <%
+                var dd1 = post.tentativeDate.getDate();
+                var mm1 = post.tentativeDate.getMonth() + 1;
+                var yyyy1 = post.tentativeDate.getFullYear();
+                if(dd1<10){
+                    dd1='0'+dd1;
+                }
+                if(mm1<10){
+                    mm1='0'+mm1;
+                }
+                var fixdate = dd1+'/'+mm1+'/'+yyyy1;
+              %>
+              <p>Date of fix: <strong><%=fixdate%></strong></p>
               <p>Unleash the warrior within you and join the force to solve this issue. RSVP below to contribute.</p>
-              <button id="rsvp-btn" class="btn btn-primary" onclick="rsvp('<%=post._id%>')" type="button" style="cursor:pointer">RSVP</button>
+              <button id="rsvp-btn" class="btn btn-primary" onclick="rsvp('<%=post._id%>')" type="button" style="cursor:pointer">Join the force!</button>
             </div>
           </div>
 
@@ -197,7 +208,6 @@
         },
         function(data, status){
           if(status == "success"){
-            console.log('hi');
             $('#rsvp-btn').html('Thank you!')
           }
         });
