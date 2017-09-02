@@ -7,6 +7,10 @@
     <!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <style type="text/css">
     .fileContainer {
@@ -32,7 +36,7 @@
       <!-- Wrapper -->
       <div id="wrapper" style="margin-top:10px;margin-bottom:10px;">
         <!-- Main -->
-          <section class="main" style="margin-top: -2%;">
+          <section class="main" style="margin-top: -2%; width: 35%">
             <!-- <header>
               <span class="avatar"><img src="img/profile.png" style="height:100px;width:100px" alt=""></span>
               <h1 style="margin-top: 2%">CLEAN_CLAN</h1>
@@ -60,9 +64,28 @@
                   </select>
                 </div> -->
 
+                <input type="file" class="filestyle" data-btnClass="btn-primary" name="image" placeholder="Get issue image" required>
 
-                <label>Image</label><input type="file" name="image" required>
+                <div class="col col-sm-8 text-left" style="margin-top:5%">
+                   <div class="form-group">
+                     <div class='input-group date' id='datetimepicker1'>
+                       <input class="form-control input-sm" style="background-color:lavenderblush;" placeholder="Choose date" type="text" id="add_issue_date" name="add_issue_date" class="form-control input-lg col-lg-4">
+                        <span class="input-group-addon">
+                         <span class="glyphicon glyphicon-calendar"></span>
+                       </span>
+                     </div>
+                   </div>
+                 </div>
+                  <br>
+                  <br>
 
+
+
+                <!-- <label>Image</label><input type="file" name="image" style="float:left" required> -->
+                <!-- Image:<input type="file" name="image" style="float:left" required> -->
+                <!-- <input type="file" class="filestyle"> -->
+
+                <!-- <input type="file" class="filestyle" data-badge="true"> -->
                <input style="margin-top:15px;" class="field" type="submit" value="ADD" class="button" id="signbutton">
                  <!-- <p style="margin-bottom:15px;" class="signmsg"  ></p> -->
             </form>
@@ -80,6 +103,20 @@
           document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
         }
       </script> -->
+
     <script type="text/javascript" src="/javascript/jquery.js"></script>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js'></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-filestyle/1.3.0/bootstrap-filestyle.min.js"> </script>
+    <script >
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+      });
+    // $(":file").filestyle();
+    $(":file").filestyle({btnClass: "btn-primary"});
+    // $(":file").filestyle({badge: true});
+      </script>
+
   </body>
 </html>
