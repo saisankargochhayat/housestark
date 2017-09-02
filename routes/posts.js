@@ -37,12 +37,32 @@ router.post('/newpost', upload.any(), function(req, res, next) {
 
 router.get('/:postid', function(req, res, next) {
   var post_id = req.params.postid;
-  Post.findById(post_id).populate('author').exec( function(err, post){
+  Post.findById(post_id).populate('author').populate('rsvp').exec( function(err, post){
     if(err){
       res.send(err);
     }
     else{
+      console.log(post);
       res.render('post', {post: post});
+    }
+  });
+});
+
+router.post('/rsvp', function(req, res, next) {
+  var post_id = req.body.postid;
+  Post.findByIdAndUpdate(post_id, {$addToSet:{rsvp: mongoose.Types.ObjectId(req.session.userid)}}, function(err, post){
+    if(err){
+      res.send(err);
+    }
+    else{
+      Post.findById(post_id).populate('author').populate('rsvp').exec( function(err, post){
+        if(err){
+          res.send(err);
+        }
+        else{
+          res.render('post', {post: post});
+        }
+      });
     }
   });
 });

@@ -2,17 +2,16 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var commentSchema = new Schema({
-  comment: { type: String, required: true },
-  author: { type: String, required: true }
-}, {
-  timestamps: true
-})
-
 var solutionSchema = new Schema({
-  warrior: {type: String, required: true},
+  warrior: {
+    type : Schema.Types.ObjectId,
+    ref : 'User'
+  },
   image_path: {type: String, required: true},
-  saviours: {type: Array}
+  saviours: [{
+    type : Schema.Types.ObjectId,
+    ref : 'User'
+  }]
 }, {
   timestamps: true
 })
@@ -29,10 +28,12 @@ var postSchema = new Schema({
   description : String,
   city: String,
   image_path: String,
-  rsvp: Array,
+  rsvp: [{
+    type : Schema.Types.ObjectId,
+    ref : 'User'
+  }],
   tentativeDate: {type: Date},
-  solutions : [solutionSchema],
-  comments: [commentSchema]
+  solutions : [solutionSchema]
 },{collection:'post'})
 
 
