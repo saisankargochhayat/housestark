@@ -11,6 +11,7 @@ var userSchema = new Schema({
   city: String,
   password: String,
   bio: String,
+  image_path: String,
   points: {type: Number, default: 0}
 },{ collection: 'user'});
 

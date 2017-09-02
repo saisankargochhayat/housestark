@@ -11,7 +11,7 @@ var commentSchema = new Schema({
 
 var solutionSchema = new Schema({
   warrior: {type: String, required: true},
-  image: {type: String, required: true},
+  image_path: {type: String, required: true},
   saviours: {type: Array}
 }, {
   timestamps: true
@@ -25,7 +25,7 @@ var postSchema = new Schema({
   author: String,
   description : String,
   city: String,
-  image: String,
+  image_path: String,
   rsvp: Array,
   tentativeDate: {type: Date},
   solutions : [solutionSchema],

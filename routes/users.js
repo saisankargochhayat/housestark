@@ -3,9 +3,11 @@ var bcrypt = require('bcrypt');
 var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('../models/user');
+var multer  = require('multer')
+var upload = multer({ dest: 'public/uploads/' })
 
 /* User signup. */
-router.post('/signup', function(req, res, next) {
+router.post('/signup', upload.any(), function(req, res, next) {
   if(req.body){
     console.log(req.body);
     var newUser = new User({
@@ -13,7 +15,8 @@ router.post('/signup', function(req, res, next) {
       email: req.body.email,
       city: req.body.city,
       password: req.body.password,
-      bio: req.body.bio
+      bio: req.body.bio,
+      image_path: req.files[0].path
     });
     newUser.save(function(err, user) {
       if (err) {
