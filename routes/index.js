@@ -4,7 +4,12 @@ var path = require('path');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.sendFile(path.resolve(__dirname + '/../public/index.html'));
+  if(req.session.user){
+    res.render('issues');
+  }
+  else {
+    res.sendFile(path.resolve(__dirname + '/../public/index.html'));
+  }
 });
 
 router.get('/login',function(req,res){

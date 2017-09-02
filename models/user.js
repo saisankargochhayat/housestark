@@ -10,8 +10,8 @@ var userSchema = new Schema({
   email: String,
   city: String,
   password: String,
-  like_count: Number,
-  user_details: String,
+  bio: String,
+  points: {type: Number, default: 0}
 },{ collection: 'user'});
 
 userSchema.pre('save', function(next) {
