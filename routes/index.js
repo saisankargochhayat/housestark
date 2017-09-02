@@ -44,4 +44,13 @@ router.get('/signup',function(req,res){
   }
 })
 
+router.get('/newpost',function(req,res){
+  if(req.session.user){
+    res.render('addpost')
+  }
+  else {
+    res.render('index')
+  }
+})
+
 module.exports = router;
