@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/newpost">New Post</a>
+              <a class="nav-link" href="/newpost">New Issue</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
@@ -72,12 +72,16 @@
                 mm='0'+mm;
             }
             var today = dd+'/'+mm+'/'+yyyy;
+            var dots = '...'
           %>
           <div class="card mb-4">
             <img class="card-img-top" src="<%=post.image_path%>" alt="Card image cap" style="max-height:300px">
             <div class="card-body">
               <h2 class="card-title"><%=post.title%></h2>
-              <p class="card-text"><%=post.description.substring(0,195)%>...</p>
+              <p class="card-text"><%=post.description.substring(0,195)%>
+                <% if(post.description.length>195) { %>
+                  <%=dots%>
+                <%}%></p>
               <a href="posts/<%=post._id%>" class="btn btn-primary">View Post &rarr;</a>
             </div>
             <div class="card-footer text-muted">
