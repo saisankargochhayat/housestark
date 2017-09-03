@@ -6,12 +6,12 @@ var User = require('../models/user');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.session.user){
-    Post.find({}, function(err,posts){
+    Post.find({}).populate('author').populate('rsvp').exec( function(err, posts){
       if(err){
         res.send(err);
       }
       else{
-        res.render('dashboard', {posts: posts})
+        res.render('dashboard', {posts: posts, user: {name:req.session.name, points:req.session.points}})
       }
     });
   }
