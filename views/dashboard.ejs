@@ -146,24 +146,45 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <% for(var i=0;i<users.length;i++){%>
+                    <tr>
+                      <th scope="row"><%=i+1%></th>
+                      <td><%=users[i].name.split()%></td>
+                      <td><%=users[i].city%></td>
+                      <td><%=users[i].points%></td>
+                    </tr>
+                  <%}%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Search Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">City Leaderboard</h5>
+            <div class="card-body">
+              <!-- <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+              </div> -->
+              <table class="table table-striped">
+                <thead>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>60</td>
+                    <th>#</th>
+                    <th>City Name</th>
+                    <th>Points</th>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>30</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>10</td>
-                  </tr>
+                </thead>
+                <tbody>
+                  <% for(var i=0;i<city.length;i++){%>
+                    <tr>
+                      <th scope="row"><%=i+1%></th>
+                      <td><%=city[i][0]%></td>
+                      <td><%=city[i][1]%></td>
+                    </tr>
+                  <%}%>
                 </tbody>
               </table>
             </div>

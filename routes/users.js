@@ -78,7 +78,7 @@ router.get('/:userid', function(req, res, next) {
       res.send(err);
     }
     else{
-      res.render('profile', {user: user});
+      res.render('profile', {user: user, imageLink: {link: true}});
     }
   });
 });

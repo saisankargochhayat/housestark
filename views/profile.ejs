@@ -14,7 +14,11 @@
               <!-- Main -->
           <section class="main" style="width:40%">
             <header>
-              <span class="avatar"><img src="<%=user.image_path%>" style="height:100px;width:100px" alt="" /></span>
+              <%if(typeof(imageLink) != null){%>
+                <span class="avatar"><img src="../<%=user.image_path%>" style="height:100px;width:100px" alt="" /></span>
+              <%}else{%>
+                <span class="avatar"><img src="<%=user.image_path%>" style="height:100px;width:100px" alt="" /></span>
+              <%}%>
               <h1 style="margin-top: 1%"><%=user.name%></h1>
               <hr>
             </header>
