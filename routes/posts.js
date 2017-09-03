@@ -92,4 +92,28 @@ router.post('/:postid/solution', upload.any(), function(req, res, next) {
   });
 });
 
+router.post('/:postid/upvote', function(req, res, next) {
+  var post_id = req.body.postid;
+  Post.findByIdAndUpdate(post_id, {$inc:{'votes': 1}}, function(err, post){
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.redirect('/posts/'+post_id)
+    }
+  });
+});
+
+router.post('/:postid/downvote', function(req, res, next) {
+  var post_id = req.body.postid;
+  Post.findByIdAndUpdate(post_id, {$inc:{'votes': -1}}, function(err, post){
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.redirect('/posts/'+post_id)
+    }
+  });
+});
+
 module.exports = router;
