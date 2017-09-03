@@ -14,7 +14,7 @@
               <!-- Main -->
           <section class="main" style="width:40%">
             <header>
-              <span class="avatar"><img src="img/profile.png" style="height:100px;width:100px" alt="" /></span>
+              <span class="avatar"><img src="<%=user.image_path%>" style="height:100px;width:100px" alt="" /></span>
               <h1 style="margin-top: 1%"><%=user.name%></h1>
               <hr>
             </header>
@@ -22,6 +22,7 @@
             <!-- <div class="container"> -->
               <p class="title"><%=user.city%></p>
               <p><%=user.bio%></p>
+              <p><b>Points:</b><%=user.points%></p>
               <br>
               <!-- <div style="margin: 24px 0;">
                 <a href="#"><i class="fa fa-dribbble"></i></a>
