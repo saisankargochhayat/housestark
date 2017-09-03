@@ -43,7 +43,7 @@ router.get('/:postid', function(req, res, next) {
       res.send(err);
     }
     else{
-      res.render('post', {post: post});
+      res.render('post', {post: post, user: req.session.name});
     }
   });
 });
@@ -62,7 +62,27 @@ router.post('/rsvp', function(req, res, next) {
 
 router.get('/:postid/solution', function(req, res, next) {
   var post_id = req.params.postid;
-  res.render('submitsolution')
+  res.render('submitsolution', {post_id:post_id})
+});
+
+router.post('/:postid/solution', upload.any(), function(req, res, next) {
+  var post_id = req.params.postid;
+  console.log(req.files);
+  var tmp = req.files[0].path.split('/')
+  tmp.shift()
+  var tmp_path = tmp.join('/');
+  var solution = {
+    solved_by: mongoose.Types.ObjectId(req.session.userid),
+    image_path: tmp_path
+  }
+  Post.findByIdAndUpdate(post_id, {$addToSet:{solutions: solution}}, function(err, post){
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.redirect('/posts/'+post_id)
+    }
+  });
 });
 
 module.exports = router;

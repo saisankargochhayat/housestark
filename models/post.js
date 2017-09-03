@@ -3,17 +3,12 @@ var Schema = mongoose.Schema;
 
 
 var solutionSchema = new Schema({
-  warrior: {
+  solved_by: {
     type : Schema.Types.ObjectId,
     ref : 'User'
   },
   image_path: {type: String, required: true},
-  saviours: [{
-    type : Schema.Types.ObjectId,
-    ref : 'User'
-  }]
-}, {
-  timestamps: true
+  date: { type: Date, default: Date.now }
 })
 
 var postSchema = new Schema({
