@@ -99,7 +99,7 @@ router.post('/:postid/upvote', function(req, res, next) {
       res.send(err);
     }
     else{
-      res.redirect('/posts/'+post_id)
+      res.send(post)
     }
   });
 });
@@ -111,7 +111,7 @@ router.post('/:postid/downvote', function(req, res, next) {
       res.send(err);
     }
     else{
-      res.redirect('/posts/'+post_id)
+      res.send(post)
     }
   });
 });
