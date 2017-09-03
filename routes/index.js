@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
               'Kolkata': 0
             }
             for(let i=0;i<users.length;i++){
-              cities[users.city]+=users.points;
+              cities[users[i].city]+=users[i].points;
             }
             // Create items array
             var items = Object.keys(cities).map(function(key) {
@@ -34,7 +34,6 @@ router.get('/', function(req, res, next) {
             items.sort(function(first, second) {
                 return second[1] - first[1];
             });
-            console.log(items);
             res.render('dashboard', {posts: posts, user: {name:req.session.name, points:req.session.points}, users: users, city:items.slice(0,4)})
           }
         })

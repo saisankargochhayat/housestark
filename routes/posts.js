@@ -27,7 +27,10 @@ router.post('/newpost', upload.any(), function(req, res, next) {
         res.status = 502;
         res.send(err);
       } else {
-        res.redirect('/posts/' + post._id);
+        User.findByIdAndUpdate(post.author, {$inc: {'points': 10}}, function(error, user){
+          if(error) res.send(error)
+          else res.redirect('/posts/' + post._id);
+        })
       }
     });
   }
@@ -43,7 +46,8 @@ router.get('/:postid', function(req, res, next) {
       res.send(err);
     }
     else{
-      res.render('post', {post: post, user: req.session.name});
+      console.log(post);
+      res.render('post', {post: post});
     }
   });
 });
@@ -72,7 +76,7 @@ router.post('/:postid/solution', upload.any(), function(req, res, next) {
   tmp.shift()
   var tmp_path = tmp.join('/');
   var solution = {
-    solved_by: mongoose.Types.ObjectId(req.session.userid),
+    solved_by: req.session.name,
     image_path: tmp_path
   }
   Post.findByIdAndUpdate(post_id, {$addToSet:{solutions: solution}}, function(err, post){
@@ -80,7 +84,10 @@ router.post('/:postid/solution', upload.any(), function(req, res, next) {
       res.send(err);
     }
     else{
-      res.redirect('/posts/'+post_id)
+      User.findByIdAndUpdate(req.session.userid, {$inc: {'points': 50}}, function(error, user){
+        if(error) res.send(error)
+        else res.redirect('/posts/'+post_id)
+      })
     }
   });
 });

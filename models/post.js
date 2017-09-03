@@ -3,10 +3,7 @@ var Schema = mongoose.Schema;
 
 
 var solutionSchema = new Schema({
-  solved_by: {
-    type : Schema.Types.ObjectId,
-    ref : 'User'
-  },
+  solved_by: {type: String, required: true},
   image_path: {type: String, required: true},
   date: { type: Date, default: Date.now }
 })

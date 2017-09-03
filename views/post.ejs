@@ -129,9 +129,11 @@
           <div class="card my-4">
             <h5 class="card-header">Fixes Submitted</h5>
             <div class="card-body">
-              <%for(var i=0;i<post.solutions.length;i++){%>
-                  <p>Submitted by: <strong><%=user%></strong></p>
+              <%if(post.solutions.length>0){for(var i=0;i<post.solutions.length;i++){%>
+                  <p>Submitted by: <strong><%=post.solutions[i].solved_by%></strong></p>
                   <img src="../<%=post.solutions[i].image_path%>" style="width:100%;max-height:150px"></img>
+              <%}}else{%>
+                <p>No fixes yet!</p>
               <%}%>
             </div>
           </div>
