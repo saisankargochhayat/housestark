@@ -88,12 +88,23 @@
                 mm='0'+mm;
             }
             var date = dd+'/'+mm+'/'+yyyy;
+            var dd1 = post.tentativeDate.getDate();
+            var mm1 = post.tentativeDate.getMonth() + 1;
+            var yyyy1 = post.tentativeDate.getFullYear();
+            if(dd1<10){
+                dd1='0'+dd1;
+            }
+            if(mm1<10){
+                mm1='0'+mm1;
+            }
+            var fixdate = dd1+'/'+mm1+'/'+yyyy1;
             var dots = '...'
           %>
           <div class="card mb-4">
             <img class="card-img-top" src="<%=post.image_path%>" alt="Card image cap" style="max-height:300px">
             <div class="card-body">
               <h2 class="card-title"><%=post.title%></h2>
+              Date of fix: <strong><%=fixdate%></strong>
               <p class="card-text"><%=post.description.substring(0,195)%>
                 <% if(post.description.length>195) { %>
                   <%=dots%>
