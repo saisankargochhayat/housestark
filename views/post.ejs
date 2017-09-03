@@ -123,6 +123,16 @@
 
           <!-- Search Widget -->
           <div class="card my-4">
+            <h5 class="card-header">Fixes Submitted</h5>
+            <div class="card-body">
+              <%for(var i=0;i<post.solutions.length;i++){%>
+                  <p>Submitted by: <strong><%=user%></strong></p>
+                  <img src="../<%=post.solutions[i].image_path%>" style="width:100%;max-height:150px"></img>
+              <%}%>
+            </div>
+          </div>
+
+          <div class="card my-4">
             <h5 class="card-header">Contribute to the cause!</h5>
             <div class="card-body">
               <%
@@ -169,9 +179,9 @@
 
           <!-- Side Widget -->
           <div class="card my-4">
-            <h5 class="card-header">Submit Solution</h5>
+            <h5 class="card-header">Submit Fix</h5>
             <div class="card-body">
-              <p>If you and along with other contributors have solved this issue, then you can upload the image featuring the fixed issue.</p>
+              <p>If you along with other contributors have solved this issue, then you can upload the image featuring the fixed issue.</p>
               <a href='/posts/<%=post._id%>/solution'><button class="btn btn-primary" type="button" style="cursor:pointer">Submit</button></a>
             </div>
           </div>

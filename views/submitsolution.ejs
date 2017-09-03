@@ -38,17 +38,14 @@
               <h1 style="margin-top: 1%">Submit Solution</h1>
               <input type="file" class="filestyle" data-btnClass="btn-primary" name="image" placeholder="Get solution image" required>
 
-              <div class="select-wrapper field" style="margin-bottom:15px;">
-                <select name="rsvp" id="rsvp" required>
-                  <option value="Ashu">Ashu</option>
-                  <option value="Alice">Alice</option>
-                  <option value="Sai">Sai</option>
-                  <option value="Baluuu">Baluuu</option>
-                </select>
-              </div>
-
+            <form id='submitsolutionform' action="/posts/<%=post_id%>/solution" method="post" enctype="multipart/form-data">
+              <h1 style="margin-top: 1%">Submit Photo Showing the Fix</h1>
+              <input type="file" class="filestyle" data-btnClass="btn-primary" name="image" required>
 
               <input style="margin-top:15px;" class="field" type="submit" value="SIGN UP" class="button" id="signbutton">
+
+              <input style="margin-top:15px;" class="field" type="submit" value="SUBMIT" class="button" id="signbutton">
+
               <p style="margin-bottom:15px;" class="signmsg"  ></p>
             </form>
           </section>
