@@ -159,8 +159,21 @@
             <h5 class="card-header">Fixes Submitted</h5>
             <div class="card-body">
               <%if(post.solutions.length>0){for(var i=0;i<post.solutions.length;i++){%>
+                <div class="col-md-10">
                   <p>Submitted by: <strong><%=post.solutions[i].solved_by%></strong></p>
                   <img src="../<%=post.solutions[i].image_path%>" style="width:100%;max-height:150px"></img>
+                </div>
+                <div class="col-md-1 vote" style="float:right;display:absolute;margin-top:-150px">
+                  <div class="row upvote" style="cursor:pointer" onclick = 'fix_upvote("<%=post._id%>")'>
+                    <i class="fa fa-chevron-up fa-2x" aria-hidden="true"></i>
+                  </div>
+                  <div class="row">
+                    <span id="fix_votes" style="font-size:40px;margin-left:4px"><%=post.votes%></span>
+                  </div>
+                  <div class="row downvote" style="cursor:pointer" onclick='fix_downvote("<%=post._id%>")'>
+                    <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
+                  </div>
+                </div>
               <%}}else{%>
                 <p>No fixes yet!</p>
               <%}%>
@@ -274,6 +287,30 @@
           val = parseInt(val)
           val--;
           $('#votes').html(val)
+        }
+      });
+    }
+    var fix_upvote = function(post_id) {
+      $.post("/posts/"+ post_id + "/upvote",
+      {},
+      function(data, status){
+        if(status == "success"){
+          let val = $('#fix_votes').html()
+          val = parseInt(val)
+          val++;
+          $('#fix_votes').html(val)
+        }
+      });
+    }
+    var fix_downvote = function(post_id) {
+      $.post("/posts/"+ post_id + "/downvote",
+      {},
+      function(data, status){
+        if(status == "success"){
+          let val = $('#fix_votes').html()
+          val = parseInt(val)
+          val--;
+          $('#fix_votes').html(val)
         }
       });
     }
